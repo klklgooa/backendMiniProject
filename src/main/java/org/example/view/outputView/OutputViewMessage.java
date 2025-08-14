@@ -12,8 +12,8 @@ public enum OutputViewMessage {
     TRIP_TRAVEL_RECORD_INPUT_MESSAGE("여행기록 입력"),
     TRIP_INPUT_REQUEST_TRIP_MESSAGE("여행 이름:"),
     TRIP_INPUT_REQUEST_START_DATE("시작 날짜"),
-    TRIP_INPUT_REQUEST_STOP_DATE("종료 날짜");
-    TRIP_INITIAL_START_MESSAGE_PRINT("여행 플랫폼에 오신것을 환영합니다~!"),
+    TRIP_INPUT_REQUEST_STOP_DATE("종료 날짜"),
+    TRIP_INITIAL_START_MESSAGE_PRINT("여행 플랫폼에 오신것을 환영합니다~!");
 
     private final String message;
 

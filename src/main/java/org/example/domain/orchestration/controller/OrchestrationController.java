@@ -1,10 +1,14 @@
 package org.example.domain.orchestration.controller;
 
 import org.example.domain.itinerary.controller.ItineraryController;
+import org.example.domain.itinerary.entity.Itinerary;
 import org.example.domain.trip.controller.TripController;
+import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.service.TripService;
 import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
+
+import java.util.List;
 
 public class OrchestrationController {
 
@@ -23,7 +27,19 @@ public class OrchestrationController {
         tripController.initialMappingJsonFile();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> main
 
+
+>>>>>>> 6fd98619cc24557056165dc1e45b688c0733d3df
+    private void task2_test() {
+        outputView.testPrintMessage();
+        List<Itinerary> itineraryListOfTripId = itineraryController.getIterineriesFromTrips(1);
+        List<Trip> tripList = tripController.getTripList();
+    }
+  
     private void welcomStartTrip() {
         while(true) {
             outputView.welcomStartTravelMessage();
@@ -49,9 +65,12 @@ public class OrchestrationController {
                 tripController.getTotalViewTripInfo();
                 break;
         }
+<<<<<<< HEAD
 =======
     private void task2_test() {
         outputView.testPrintMessage();
+>>>>>>> main
+=======
 >>>>>>> main
     }
 

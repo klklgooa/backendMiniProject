@@ -4,6 +4,9 @@ public class OutputView {
 
     private void printMessage(String msg) { System.out.println(msg); }
 
+    public void testPrintMessage() {
+        printMessage(OutputViewMessage.TRIP_INITIAL_START_MESSAGE_PRINT.getMessage());
+    }
     public void welcomStartTravelMessage() {
         printMessage(OutputViewMessage.TRIP_MESSAGE_PRIFIX.getMessage());
         printMessage(OutputViewMessage.TRIP_INITIAL_START_MESSAGE_SERVICE.getMessage());

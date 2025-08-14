@@ -1,8 +1,11 @@
 package org.example.domain.trip.controller;
 
+import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.service.TripService;
 import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
+
+import java.util.List;
 
 public class TripController {
     TripService tripService = new TripService();
@@ -13,6 +16,7 @@ public class TripController {
 
     public void initialMappingJsonFile() {
         tripService.getTrip();
+    }
 
     public void inputTripsData() {
         while(true) {
@@ -38,7 +42,6 @@ public class TripController {
 
         outputView.tripInputStopDateMessage();
         String StopDate = inputView.inputDataStr();
-
     }
 
     public void create(String trip_name, String start_date, String end_date) {
@@ -47,5 +50,21 @@ public class TripController {
 
     public void findTripById(int trip_id) {
         tripService.findTripById(trip_id);
+    }
+
+
+    public void getTotalViewTripInfo() {
+
+    }
+
+    public List<Trip> getTripList() {
+        List<Trip> tripList = tripService.getTrip();
+        tripList.stream().forEach(trip -> {
+            System.out.println("  - 여행 ID: " + trip.getTrip_id());
+            System.out.println("  - 여행 이름: " + trip.getTrip_name());
+            System.out.println("  - 여행 시작 날짜: " + trip.getStart_date());
+            System.out.println("  - 여행 종료 날짜: " + trip.getEnd_date());
+        });
+        return tripList;
     }
 }

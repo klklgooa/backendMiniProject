@@ -36,6 +36,7 @@ public class TripService {
 //                }
 //            });
 
+
             // 예시: 새로운 Trip을 추가하는 로직
 //            Trip newTrip = new Trip();
 //            // ... 새 Trip 데이터 설정 ...

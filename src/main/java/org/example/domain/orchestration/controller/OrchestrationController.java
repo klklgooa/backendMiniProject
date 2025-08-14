@@ -22,6 +22,7 @@ public class OrchestrationController {
     private void initialMappingJsonFile() {
         tripController.initialMappingJsonFile();
     }
+<<<<<<< HEAD
 
     private void welcomStartTrip() {
         while(true) {
@@ -48,6 +49,10 @@ public class OrchestrationController {
                 tripController.getTotalViewTripInfo();
                 break;
         }
+=======
+    private void task2_test() {
+        outputView.testPrintMessage();
+>>>>>>> main
     }
 
     private void process(Runnable action) {

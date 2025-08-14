@@ -12,6 +12,8 @@ public class TripController {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
 
+    public TripController() {}
+
     public void initialMappingJsonFile() {
         tripService.getTrip();
     }
@@ -40,7 +42,14 @@ public class TripController {
 
         outputView.tripInputStopDateMessage();
         String StopDate = inputView.inputDataStr();
+    }
 
+    public void create(String trip_name, String start_date, String end_date) {
+        tripService.createTrip(trip_name, start_date, end_date);
+    }
+
+    public void findTripById(int trip_id) {
+        tripService.findTripById(trip_id);
     }
 
 
@@ -58,5 +67,4 @@ public class TripController {
         });
         return tripList;
     }
-
 }

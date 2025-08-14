@@ -26,8 +26,14 @@ public class OrchestrationController {
     private void initialMappingJsonFile() {
         tripController.initialMappingJsonFile();
     }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> main
 
 
+>>>>>>> 6fd98619cc24557056165dc1e45b688c0733d3df
     private void task2_test() {
         outputView.testPrintMessage();
         List<Itinerary> itineraryListOfTripId = itineraryController.getIterineriesFromTrips(1);
@@ -59,6 +65,13 @@ public class OrchestrationController {
                 tripController.getTotalViewTripInfo();
                 break;
         }
+<<<<<<< HEAD
+=======
+    private void task2_test() {
+        outputView.testPrintMessage();
+>>>>>>> main
+=======
+>>>>>>> main
     }
 
     private void process(Runnable action) {

@@ -13,7 +13,7 @@ public class TripService {
 
     public void createTrip(String trip_name, String start_date, String end_date) {
         Trip trip = new Trip(trip_name, start_date, end_date);
-        tripRepository.saveTrip(trip);
+        tripRepository.addTrip(trip);
     }
 
     public void getTrip() {
@@ -29,7 +29,6 @@ public class TripService {
                 for(Itinerary iterator: trip.getItineraries()) {
                     System.out.println(iterator.getDestination());
                 }
-
             });
 
             // 예시: 새로운 Trip을 추가하는 로직

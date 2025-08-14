@@ -13,7 +13,6 @@ public class TripController {
 
     public void initialMappingJsonFile() {
         tripService.getTrip();
-    }
 
     public void inputTripsData() {
         while(true) {

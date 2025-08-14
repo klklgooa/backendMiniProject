@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TripRepository {
-    private static final String FILE_PATH = "";
+    private static final String FILE_PATH = "src/main/resources";
     private final ObjectMapper objectMapper;
 
     // objcectMapper: 자바 객체 <-> json or json <-> 자바 객체로 매핑해주는 역할
@@ -18,6 +18,24 @@ public class TripRepository {
     public TripRepository() {
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
+    }
+
+    public List<Trip> loadAllTrips() throws IOException {
+        List<Trip> trips = new ArrayList<>();
+        String dataDirPath = FILE_PATH;
+        File dataDir = new File(dataDirPath);
+
+        if (dataDir.exists() && dataDir.isDirectory()) {
+            File[] jsonFiles = dataDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".json"));
+
+            if (jsonFiles != null) {
+                for (File jsonFile : jsonFiles) {
+                    Trip trip = objectMapper.readValue(jsonFile, Trip.class);
+                    trips.add(trip);
+                }
+            }
+        }
+        return trips;
     }
 
     public Trip findTripById(int trip_id) {

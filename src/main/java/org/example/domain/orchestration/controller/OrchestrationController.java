@@ -2,13 +2,14 @@ package org.example.domain.orchestration.controller;
 
 import org.example.domain.itinerary.controller.ItineraryController;
 import org.example.domain.trip.controller.TripController;
+import org.example.domain.trip.service.TripService;
 import org.example.view.outputView.OutputView;
 
 public class OrchestrationController {
 
     ItineraryController itineraryController = new ItineraryController();
     TripController tripController = new TripController();
-
+    TripService tripService = new TripService();
     OutputView outputView = new OutputView();
 
     public void run() {
@@ -17,6 +18,7 @@ public class OrchestrationController {
     }
 
     private void task1_test() {
+        tripService.getTrip();
         outputView.testPrintMessage();
     }
 

@@ -20,7 +20,6 @@ public class OrchestrationController {
     private void initialMappingJsonFile() {
         tripController.initialMappingJsonFile();
     }
-
     private void task2_test() {
         outputView.testPrintMessage();
     }

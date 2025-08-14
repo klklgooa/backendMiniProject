@@ -18,7 +18,7 @@ public class TripService {
     }
 
     public List<Trip> getTrip() {
-        try {
+        if (trips == null) try {
             // 런타임 시작 시 모든 JSON 파일을 읽어 trips 객체에 저장
             trips = tripRepository.loadAllTrips();
 

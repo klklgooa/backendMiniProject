@@ -16,11 +16,11 @@ public class TripService {
         tripRepository.addTrip(trip);
     }
 
-    public void getTrip() {
-        try {
+    public List<Trip> getTrip() {
+        if (trips == null) try {
             // 런타임 시작 시 모든 JSON 파일을 읽어 trips 객체에 저장
             trips = tripRepository.loadAllTrips();
-
+          
             // 데이터 확인 및 활용
             System.out.println("총 " + trips.size() + "개의 여행 정보가 로드되었습니다.");
             trips.forEach(trip -> {
@@ -47,5 +47,6 @@ public class TripService {
             System.err.println("JSON 파일을 읽는 중 오류가 발생했습니다: " + e.getMessage());
             e.printStackTrace();
         }
+        return trips;
     }
 }

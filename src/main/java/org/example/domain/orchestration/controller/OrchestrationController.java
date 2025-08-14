@@ -1,9 +1,12 @@
 package org.example.domain.orchestration.controller;
 
 import org.example.domain.itinerary.controller.ItineraryController;
+import org.example.domain.itinerary.entity.Itinerary;
 import org.example.domain.trip.controller.TripController;
 import org.example.domain.trip.service.TripService;
 import org.example.view.outputView.OutputView;
+
+import java.util.List;
 
 public class OrchestrationController {
 
@@ -23,6 +26,8 @@ public class OrchestrationController {
 
     private void task2_test() {
         outputView.testPrintMessage();
+        List<Itinerary> itineraryListOfTripId = itineraryController.getIterineriesFromTrips(1);
+
     }
 
     private void process(Runnable action) {

@@ -6,7 +6,6 @@ public class OutputView {
 
     public void testPrintMessage() {
         printMessage(OutputViewMessage.TRIP_INITIAL_START_MESSAGE_PRINT.getMessage());
-        printMessage(OutputViewMessage.TEST.getMessage());
 
     }
 }

@@ -5,7 +5,6 @@ import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.repository.TripRepository;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 public class TripService {

@@ -1,8 +1,11 @@
 package org.example.domain.trip.controller;
 
+import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.service.TripService;
 import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
+
+import java.util.List;
 
 public class TripController {
     TripService tripService = new TripService();
@@ -43,6 +46,8 @@ public class TripController {
 
     public void getTotalViewTripInfo() {
 
+    }
+
     public List<Trip> getTripList() {
         List<Trip> tripList = tripService.getTrip();
         tripList.stream().forEach(trip -> {
@@ -53,4 +58,5 @@ public class TripController {
         });
         return tripList;
     }
+
 }

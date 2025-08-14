@@ -41,4 +41,52 @@ public class Itinerary {
     public String getDestination() {
         return destination;
     }
+
+    public int getItinerary_id() {
+        return itinerary_id;
+    }
+
+    public void setItinerary_id(int itinerary_id) {
+        this.itinerary_id = itinerary_id;
+    }
+
+    public String getDeparture_place() {
+        return departure_place;
+    }
+
+    public void setDeparture_place(String departure_place) {
+        this.departure_place = departure_place;
+    }
+
+    public String getDeparture_time() {
+        return departure_time;
+    }
+
+    public void setDeparture_time(String departure_time) {
+        this.departure_time = departure_time;
+    }
+
+    public String getArrival_time() {
+        return arrival_time;
+    }
+
+    public void setArrival_time(String arrival_time) {
+        this.arrival_time = arrival_time;
+    }
+
+    public String getCheck_in() {
+        return check_in;
+    }
+
+    public void setCheck_in(String check_in) {
+        this.check_in = check_in;
+    }
+
+    public String getCheck_out() {
+        return check_out;
+    }
+
+    public void setCheck_out(String check_out) {
+        this.check_out = check_out;
+    }
 }

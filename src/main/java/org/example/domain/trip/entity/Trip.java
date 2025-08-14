@@ -1,4 +1,27 @@
 package org.example.domain.trip.entity;
 
+import org.example.domain.itinerary.entity.Itinerary;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Trip {
+    private int trip_id;
+    private String trip_name;
+    private String start_date;
+    private String end_date;
+    private List<Itinerary> itineraries = new ArrayList<>();
+
+    public Trip() {}
+
+    public Trip(int trip_id, String trip_name, String start_date, String end_date) {
+        this.trip_id = trip_id;
+        this.trip_name = trip_name;
+        this.start_date = start_date;
+        this.end_date = end_date;
+    }
+
+    // Person 여은동 = new Person("여은동" , 20, "alpha-male");
 }
+
+

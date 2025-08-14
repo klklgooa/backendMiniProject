@@ -2,6 +2,7 @@ package org.example.domain.trip.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.example.domain.trip.entity.Trip;
+import org.example.globals.utils.idUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TripRepository {
-    private static final String FILE_PATH = "";
+    private static final File FILE_PATH = new File("");
     private final ObjectMapper objectMapper;
 
     // objcectMapper: 자바 객체 <-> json or json <-> 자바 객체로 매핑해주는 역할
@@ -39,19 +40,11 @@ public class TripRepository {
         }
     }
 
-    public List<Trip> findAll() {
-        try {
-            File file = new File(FILE_PATH);
-            if (!file.exists()) return new ArrayList<>();
-            return Arrays.asList(objectMapper.readValue(file, Trip[].class));
-        } catch (IOException e) {
-            throw new RuntimeException("Trip 파일을 저장하는데 데 실패했습니다.", e);
-        }
+    public void addTrip(Trip trip) {
+        int newId = idUtil.nextTripId();
+        trip.setTrip_id(newId);
+        saveTrip(trip);
     }
-
-//    public addTrip(Trip trip) {
-//
-//    }
 
 
 }

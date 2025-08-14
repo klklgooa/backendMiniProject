@@ -24,8 +24,8 @@ public class Trip {
         return this.trip_id;
     }
 
-    public void setTrip_id() {
-
+    public void setTrip_id(int trip_id) {
+        this.trip_id = trip_id;
     }
 
 

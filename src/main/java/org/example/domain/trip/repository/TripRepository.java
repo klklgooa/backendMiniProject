@@ -5,6 +5,9 @@ import org.example.domain.trip.entity.Trip;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TripRepository {
     private static final String FILE_PATH = "";
@@ -15,10 +18,6 @@ public class TripRepository {
     public TripRepository() {
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
-        File dir = new File(FILE_PATH);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
     }
 
     public Trip findTripById(int trip_id) {
@@ -39,4 +38,20 @@ public class TripRepository {
             throw new RuntimeException("Trip 파일을 저장하는데 데 실패했습니다.", e);
         }
     }
+
+    public List<Trip> findAll() {
+        try {
+            File file = new File(FILE_PATH);
+            if (!file.exists()) return new ArrayList<>();
+            return Arrays.asList(objectMapper.readValue(file, Trip[].class));
+        } catch (IOException e) {
+            throw new RuntimeException("Trip 파일을 저장하는데 데 실패했습니다.", e);
+        }
+    }
+
+//    public addTrip(Trip trip) {
+//
+//    }
+
+
 }

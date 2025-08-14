@@ -14,8 +14,7 @@ public class Trip {
 
     public Trip() {}
 
-    public Trip(int trip_id, String trip_name, String start_date, String end_date) {
-        this.trip_id = trip_id;
+    public Trip(String trip_name, String start_date, String end_date) {
         this.trip_name = trip_name;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -25,7 +24,11 @@ public class Trip {
         return this.trip_id;
     }
 
-    // Person 여은동 = new Person("여은동" , 20, "alpha-male");
+    public void setTrip_id() {
+
+    }
+
+
 }
 
 

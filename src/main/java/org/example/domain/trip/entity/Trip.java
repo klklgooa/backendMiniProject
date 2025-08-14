@@ -21,6 +21,10 @@ public class Trip {
         this.end_date = end_date;
     }
 
+    public int getTrip_id() {
+        return this.trip_id;
+    }
+
     // Person 여은동 = new Person("여은동" , 20, "alpha-male");
 }
 

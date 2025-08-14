@@ -37,4 +37,8 @@ public class Itinerary {
         this.check_in = check_in;
         this.check_out = check_out;
     }
+
+    public String getDestination() {
+        return destination;
+    }
 }

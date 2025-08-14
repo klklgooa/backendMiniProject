@@ -1,9 +1,11 @@
 package org.example.domain.trip.service;
 
+import org.example.domain.itinerary.entity.Itinerary;
 import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.repository.TripRepository;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 public class TripService {
@@ -24,6 +26,11 @@ public class TripService {
             System.out.println("총 " + trips.size() + "개의 여행 정보가 로드되었습니다.");
             trips.forEach(trip -> {
                 System.out.println("Trip Name: " + trip.getTrip_name() + ", Trip ID: " + trip.getTrip_id());
+                System.out.println(trip.getEnd_date());
+                for(Itinerary iterator: trip.getItineraries()) {
+                    System.out.println(iterator.getDestination());
+                }
+
             });
 
             // 예시: 새로운 Trip을 추가하는 로직

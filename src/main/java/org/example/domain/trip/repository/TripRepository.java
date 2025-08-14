@@ -12,6 +12,7 @@ import java.util.List;
 public class TripRepository {
     private static final String FILE_PATH = "src/main/resources";
     private final ObjectMapper objectMapper;
+    List<Trip> trips = new ArrayList<>();
 
     // objcectMapper: 자바 객체 <-> json or json <-> 자바 객체로 매핑해주는 역할
     // JavaTimeModule(): java.time 패키지의 날짜·시간 타입을 변환해주는 역할
@@ -21,7 +22,6 @@ public class TripRepository {
     }
 
     public List<Trip> loadAllTrips() throws IOException {
-        List<Trip> trips = new ArrayList<>();
         String dataDirPath = FILE_PATH;
         File dataDir = new File(dataDirPath);
 

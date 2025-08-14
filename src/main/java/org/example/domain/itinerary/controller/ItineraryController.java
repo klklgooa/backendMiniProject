@@ -33,4 +33,7 @@ public class ItineraryController {
         });
         return itineraries;
     }
+
+    public void inputItinearyData() {
+    }
 }

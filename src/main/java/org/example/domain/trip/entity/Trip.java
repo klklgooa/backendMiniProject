@@ -28,7 +28,33 @@ public class Trip {
         this.trip_id = trip_id;
     }
 
+    public String getTrip_name() {
+        return trip_name;
+    }
 
+    public void setTrip_name(String trip_name) {
+        this.trip_name = trip_name;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    public List<Itinerary> getItineraries() {
+        return itineraries;
+    }
 }
 
 

@@ -1,12 +1,29 @@
 package org.example.domain.itinerary.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.time.LocalDateTime;
+
 public class Itinerary {
+    @JsonProperty("itinerary_id")
     private int itinerary_id;
+
+    @JsonProperty("departure_place")
     private String departure_place;
+
+    @JsonProperty("destination")
     private String destination;
+
+    @JsonProperty("departure_time")
     private String departure_time;
+
+    @JsonProperty("arrival_time")
     private String arrival_time;
+
+    @JsonProperty("check_in")
     private String check_in;
+
+    @JsonProperty("check_out")
     private String check_out;
 
     public Itinerary() {}
@@ -19,5 +36,9 @@ public class Itinerary {
         this.arrival_time = arrival_time;
         this.check_in = check_in;
         this.check_out = check_out;
+    }
+
+    public String getDestination() {
+        return destination;
     }
 }

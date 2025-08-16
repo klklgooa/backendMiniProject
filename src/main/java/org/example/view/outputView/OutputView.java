@@ -1,5 +1,9 @@
 package org.example.view.outputView;
 
+import org.example.domain.trip.entity.Trip;
+
+import java.util.List;
+
 public class OutputView {
 
     private void printMessage(String msg) { System.out.println(msg); }
@@ -42,5 +46,48 @@ public class OutputView {
 
     public void tripInputStopDateMessage() {
         printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_STOP_DATE.getMessage());
+    }
+
+    public void startItineraryInputStartMessage() {
+        printMessage(OutputViewMessage.TRIP_MESSAGE_PRIFIX.getMessage());
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_START_MESSAGE.getMessage());
+        printMessage(OutputViewMessage.TRIP_MESSAGE_PRIFIX.getMessage());
+    }
+
+    public void tripRequestItineraryOrigin() {
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_ORIGIN_MESSAGE.getMessage());
+    }
+    public void tripRequestItineraryDestination() {
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_DESTINATION_MESSAGE.getMessage());
+    }
+    public void tripRequestItineraryOriginTime() {
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_ORIGIN_TIME_MESSAGE.getMessage());
+    }
+
+    public void tripRequestItineraryDestinationTime() {
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_DESTINATION_TIME_MESSAGE.getMessage());
+    }
+
+    public void tripRequestItineraryCheckInTime() {
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_CHECK_IN_MESSAGE.getMessage());
+    }
+    public void tripRequestItineraryCheckOutTime() {
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_CHECK_OUT_MESSAGE.getMessage());
+    }
+
+    public void viewerGetTrips(List<Trip> getTrips) {
+
+        // 여행 출력 해야함~
+
+        printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_TO_ITINERARY_MESSAGE.getMessage());
+    }
+
+    public void viewerGetTripInfos(Trip getTripInfo) {
+
+    }
+
+    public void sucessSaveItineraryInfoMessage() {
+        printMessage(OutputViewMessage.ITINERARY_INPUT_SUCCESS_MESSAGE.getMessage());
+        printMessage(OutputViewMessage.ITINERARY_INPUT_RETRY_MESSAGE.getMessage());
     }
 }

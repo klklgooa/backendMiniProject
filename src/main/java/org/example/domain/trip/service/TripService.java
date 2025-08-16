@@ -8,20 +8,35 @@ import java.io.IOException;
 import java.util.List;
 
 public class TripService {
-    private TripRepository tripRepository = new TripRepository();
+    private final TripRepository tripRepository = new TripRepository();
     private static List<Trip> trips;
 
     public boolean createTrip(String trip_name, String start_date, String end_date) {
-        Trip trip = new Trip(trip_name, start_date, end_date);
-        tripRepository.addTrip(trip);
-        return true;
+        try {
+            Trip trip = new Trip(trip_name, start_date, end_date);
+            tripRepository.addTrip(trip);
+            return true;
+        } catch (Exception e) {
+//            throw new RuntimeException(e);
+            return false;
+        }
     }
 
     public Trip findTripById(int trip_id) {
         return tripRepository.findTripById(trip_id);
     }
 
-    public List<Trip> getTrip() {
+    public List<Trip> findAllTrips() {
+        try {
+            trips = tripRepository.findAllTrips();
+            return trips;
+        } catch (Exception e) {
+
+            return null;
+        }
+    }
+
+    public List<Trip> initialMappingJsonFile() {
         try {
             // 런타임 시작 시 모든 JSON 파일을 읽어 trips 객체에 저장
             trips = tripRepository.loadAllTrips();
@@ -55,4 +70,10 @@ public class TripService {
         }
         return trips;
     }
+
+    // input 할것 저장해야해요~!
+    public void inputTripData(String name, String startDate, String stopDate) {
+
+    }
+
 }

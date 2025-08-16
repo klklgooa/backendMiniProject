@@ -15,7 +15,7 @@ public class TripController {
     public TripController() {}
 
     public void initialMappingJsonFile() {
-        tripService.getTrip();
+        tripService.initialMappingJsonFile();
     }
 
     public void inputTripsData() {
@@ -38,27 +38,16 @@ public class TripController {
         String name = inputView.inputDataStr();
 
         outputView.tripInputStartDateMessage();
-        String StartDate = inputView.inputDataStr();
+        String startDate = inputView.inputDataStrDate();
 
         outputView.tripInputStopDateMessage();
-        String StopDate = inputView.inputDataStr();
-    }
+        String stopDate = inputView.inputDataStrDate();
 
-    public void create(String trip_name, String start_date, String end_date) {
-        tripService.createTrip(trip_name, start_date, end_date);
-    }
-
-    public void findTripById(int trip_id) {
-        tripService.findTripById(trip_id);
-    }
-
-
-    public void getTotalViewTripInfo() {
-
+        tripService.createTrip(name, startDate, stopDate);
     }
 
     public List<Trip> getTripList() {
-        List<Trip> tripList = tripService.getTrip();
+        List<Trip> tripList = tripService.initialMappingJsonFile();
         tripList.stream().forEach(trip -> {
             System.out.println("  - 여행 ID: " + trip.getTrip_id());
             System.out.println("  - 여행 이름: " + trip.getTrip_name());
@@ -67,4 +56,14 @@ public class TripController {
         });
         return tripList;
     }
+
+    public void getTotalViewTripInfo() {
+        List<Trip> getTrips = tripService.findAllTrips();
+        outputView.viewerGetTrips(getTrips);
+        int getTripId = inputView.inputData();
+
+        Trip getTripInfo = tripService.findTripById(getTripId);
+        outputView.viewerGetTripInfos(getTripInfo);
+    }
+
 }

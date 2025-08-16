@@ -1,7 +1,9 @@
 package org.example.domain.trip.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.example.domain.itinerary.entity.Itinerary;
 import org.example.domain.trip.entity.Trip;
+import org.example.globals.exceptions.FileLoadException;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class TripRepository {
             if(!file.exists()) return null;
             return objectMapper.readValue(file, Trip.class);
         } catch (IOException e) {
-            throw new RuntimeException("Trip 파일을 읽는 데 실패했습니다.", e);
+            throw new FileLoadException("Trip 파일을 읽는 데 실패했습니다.", e);
         }
     }
 
@@ -52,7 +54,7 @@ public class TripRepository {
             File file = new File(FILE_PATH, "trip_" + trip.getTrip_id() + ".json");
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, trip);
         } catch (IOException e) {
-            throw new RuntimeException("Trip 파일을 저장하는데 데 실패했습니다.", e);
+            throw new FileLoadException("Trip 파일을 저장하는데 데 실패했습니다.", e);
         }
     }
 
@@ -61,4 +63,14 @@ public class TripRepository {
         trip.setTrip_id(newId);
         saveTrip(trip);
     }
+
+    public List<Trip> findAllTrips() {
+        return trips;
+    }
+
+    //해당 아이디에 itinerary 저장하기
+    public void saveItineraryInfo(int selectTripInputId, Itinerary itinerary) {
+
+    }
+
 }

@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.example.domain.itinerary.entity.Itinerary;
 import org.example.domain.trip.entity.Trip;
+import org.example.globals.exceptions.ErrorMessage;
 import org.example.globals.exceptions.FileLoadException;
 
 import java.io.File;
@@ -45,7 +46,7 @@ public class TripRepository {
             if(!file.exists()) return null;
             return objectMapper.readValue(file, Trip.class);
         } catch (IOException e) {
-            throw new FileLoadException("Trip 파일을 읽는 데 실패했습니다.", e);
+            throw new FileLoadException(ErrorMessage.FILE_NOT_LOADED_READ_ERROR.getMessage(), e);
         }
     }
 
@@ -54,7 +55,7 @@ public class TripRepository {
             File file = new File(FILE_PATH, "trip_" + trip.getTrip_id() + ".json");
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, trip);
         } catch (IOException e) {
-            throw new FileLoadException("Trip 파일을 저장하는데 데 실패했습니다.", e);
+            throw new FileLoadException(ErrorMessage.FILE_NOT_LOADED_READ_ERROR.getMessage(), e);
         }
     }
 

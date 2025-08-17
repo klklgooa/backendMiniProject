@@ -9,10 +9,14 @@ import java.util.List;
 
 public class TripController {
     TripService tripService = new TripService();
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
 
-    public TripController() {}
+    private final OutputView outputView;
+    private final InputView inputView;
+
+    public TripController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void initialMappingJsonFile() {
         tripService.initialMappingJsonFile();

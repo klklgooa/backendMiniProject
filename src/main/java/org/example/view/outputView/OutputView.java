@@ -75,6 +75,20 @@ public class OutputView {
         printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_ITINERARY_CHECK_OUT_MESSAGE.getMessage());
     }
 
+    public void sucessSaveItineraryInfoMessage() {
+        printMessage(OutputViewMessage.ITINERARY_INPUT_SUCCESS_MESSAGE.getMessage());
+        printMessage(OutputViewMessage.ITINERARY_INPUT_RETRY_MESSAGE.getMessage());
+    }
+
+    public void showError(String errorMessage) {
+        printMessage(errorMessage);
+    }
+
+    public void requestRetryMessage() {
+        printMessage(OutputViewMessage.ITINERARY_INPUT_RETRY_MESSAGE.getMessage());
+    }
+
+
     public void viewerGetTrips(List<Trip> getTrips) {
 
         // 여행 출력 해야함~
@@ -84,10 +98,5 @@ public class OutputView {
 
     public void viewerGetTripInfos(Trip getTripInfo) {
 
-    }
-
-    public void sucessSaveItineraryInfoMessage() {
-        printMessage(OutputViewMessage.ITINERARY_INPUT_SUCCESS_MESSAGE.getMessage());
-        printMessage(OutputViewMessage.ITINERARY_INPUT_RETRY_MESSAGE.getMessage());
     }
 }

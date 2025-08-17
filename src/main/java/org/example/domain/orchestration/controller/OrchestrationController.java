@@ -12,11 +12,12 @@ import java.util.List;
 
 public class OrchestrationController {
 
-    ItineraryController itineraryController = new ItineraryController();
-    TripController tripController = new TripController();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    ItineraryController itineraryController = new ItineraryController(inputView, outputView);
+    TripController tripController = new TripController(inputView, outputView);
+
 
     public void run() {
         process(this::initialMappingJsonFile);

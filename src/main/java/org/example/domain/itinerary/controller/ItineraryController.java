@@ -10,14 +10,20 @@ import org.example.view.outputView.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.example.globals.exceptions.InvalidItineraryTimeException;
 
 public class ItineraryController {
     public TripService tripService = new TripService();
     public ItineraryService itineraryService = new ItineraryService();
     public List<Itinerary> itineraries = new ArrayList<>();
-    public OutputView outputView = new OutputView();
-    public InputView inputView = new InputView();
 
+    private final OutputView outputView;
+    private final InputView inputView;
+
+    public ItineraryController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
     public List<Itinerary> getIterineriesFromTrips(int targetTripId) {
         List<Trip> allTrips = tripService.initialMappingJsonFile();
         Optional<Trip> foundTrip = allTrips.stream()
@@ -44,33 +50,55 @@ public class ItineraryController {
         getAllTripViewToItineraryInput();
         int selectTripInputId = inputView.inputData();
 
-        int chooseRetry;
-        do {
-            outputView.startItineraryInputStartMessage();
+        boolean continueInput = true;
+        while (continueInput) {
+            try {
+                collectAndSaveItinerary(selectTripInputId);
+                outputView.sucessSaveItineraryInfoMessage();
 
-            outputView.tripRequestItineraryOrigin();
-            String tripOriginName = inputView.inputDataStr();
+                int chooseRetry = inputView.inputData();
+                if (chooseRetry == 2) {
+                    continueInput = false;
+                }
+                
+            } catch (InvalidItineraryTimeException e) {
+                outputView.showError(e.getMessage());
+                continueInput = askForRetry();
+            } catch (Exception e) {
+                outputView.showError(e.getMessage());
+                continueInput = askForRetry();
+            }
+        }
+    }
 
-            outputView.tripRequestItineraryDestination();
-            String tripDestination = inputView.inputDataStr();
+    private void collectAndSaveItinerary(int tripId) {
+        outputView.startItineraryInputStartMessage();
 
-            outputView.tripRequestItineraryOriginTime();
-            String tripOriginTime = inputView.inputDataStrTime();
+        outputView.tripRequestItineraryOrigin();
+        String tripOriginName = inputView.inputDataStr();
 
-            outputView.tripRequestItineraryDestinationTime();
-            String tripDestinationTime = inputView.inputDataStrTime();
+        outputView.tripRequestItineraryDestination();
+        String tripDestination = inputView.inputDataStr();
 
-            outputView.tripRequestItineraryCheckInTime();
-            String tripCheckInTime = inputView.inputDataStrTime();
+        outputView.tripRequestItineraryOriginTime();
+        String tripOriginTime = inputView.inputDataStrTime();
 
-            outputView.tripRequestItineraryCheckOutTime();
-            String tripCheckOutTime = inputView.inputDataStrTime();
+        outputView.tripRequestItineraryDestinationTime();
+        String tripDestinationTime = inputView.inputDataStrTime();
 
-            itineraryService.saveItineraryInfo(selectTripInputId, tripOriginName, tripDestination, tripOriginTime, tripDestinationTime, tripCheckInTime, tripCheckOutTime);
-            outputView.sucessSaveItineraryInfoMessage();
-            chooseRetry = inputView.inputData();
+        outputView.tripRequestItineraryCheckInTime();
+        String tripCheckInTime = inputView.inputDataStrTime();
 
-        } while (chooseRetry == 1);
+        outputView.tripRequestItineraryCheckOutTime();
+        String tripCheckOutTime = inputView.inputDataStrTime();
+        
+        itineraryService.saveItineraryInfo(tripId, tripOriginName, tripDestination, tripOriginTime, tripDestinationTime, tripCheckInTime, tripCheckOutTime);
+    }
+
+    private boolean askForRetry() {
+        outputView.requestRetryMessage();
+        int retryChoice = inputView.inputData();
+        return retryChoice == 1;
     }
 
     private void getAllTripViewToItineraryInput() {

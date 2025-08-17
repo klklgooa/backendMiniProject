@@ -1,5 +1,6 @@
 package org.example.globals.utils;
 
+import org.example.globals.exceptions.ErrorMessage;
 import org.example.globals.exceptions.InputException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class InputValidator {
             LocalDate date = LocalDate.parse(input, inputFormatter);
             return date.format(outputFormatter);
         } catch (DateTimeParseException e) {
-            throw new InputException("잘못된 날짜 형식입니다. YYYY/MM/DD 형식으로 입력해주세요.");
+            throw new InputException(ErrorMessage.INVALID_DATE_FORMAT.getMessage());
         }
     }
 
@@ -26,7 +27,7 @@ public class InputValidator {
             LocalDateTime dateTime = LocalDateTime.parse(input, inputFormatter);
             return dateTime.format(outputFormatter);
         } catch (DateTimeParseException e) {
-            throw new InputException("잘못된 날짜 형식입니다. YYYY/MM/DD-HH:mm 형식으로 입력해주세요.");
+            throw new InputException(ErrorMessage.INVALID_TIME_FORMAT.getMessage());
         }
     }
 }

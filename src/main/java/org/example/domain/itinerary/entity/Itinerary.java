@@ -1,10 +1,13 @@
 package org.example.domain.itinerary.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.example.globals.exceptions.InvalidItineraryTimeException;
+import org.example.globals.utils.TimeValidator;
 
 import java.time.LocalDateTime;
 
 public class Itinerary {
+
     @JsonProperty("itinerary_id")
     private int itinerary_id;
 
@@ -36,6 +39,15 @@ public class Itinerary {
         this.arrival_time = arrival_time;
         this.check_in = check_in;
         this.check_out = check_out;
+        validateTimes();
+    }
+
+    private void validateTimes() {
+        try {
+            TimeValidator.validateItineraryTimes(departure_time, arrival_time, check_in, check_out);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidItineraryTimeException(e.getMessage());
+        }
     }
 
     public String getDestination() {

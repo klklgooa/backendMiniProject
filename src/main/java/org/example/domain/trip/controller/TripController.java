@@ -8,14 +8,18 @@ import org.example.view.outputView.OutputView;
 import java.util.List;
 
 public class TripController {
-    private final TripService tripService = new TripService();
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
+    private final TripService tripService = new TripService();;
 
-    public TripController() {}
+    private final OutputView outputView;
+    private final InputView inputView;
+
+    public TripController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void initialMappingJsonFile() {
-        tripService.getTrip();
+        tripService.initialMappingJsonFile();
     }
 
     public void inputTripsData() {
@@ -38,28 +42,27 @@ public class TripController {
         String name = inputView.inputDataStr();
 
         outputView.tripInputStartDateMessage();
-        String StartDate = inputView.inputDataStr();
+        String startDate = inputView.inputDataStrDate();
 
         outputView.tripInputStopDateMessage();
-        String StopDate = inputView.inputDataStr();
-    }
+        String stopDate = inputView.inputDataStrDate();
 
-    public void create(String trip_name, String start_date, String end_date) {
-        tripService.createTrip(trip_name, start_date, end_date);
-    }
-
-    public void findTripById(int trip_id) {
-        tripService.findTripById(trip_id);
-    }
-
-
-    public void getTotalViewTripInfo() {
-
+        tripService.createTrip(name, startDate, stopDate);
     }
 
     public List<Trip> getTripList() {
-        List<Trip> tripList = tripService.getTrip();
+        List<Trip> tripList = tripService.initialMappingJsonFile(); // get 수정해야함
         outputView.printTripList(tripList);
         return tripList;
     }
+
+    public void getTotalViewTripInfo() {
+        List<Trip> getTrips = tripService.findAllTrips();
+        outputView.viewerGetTrips(getTrips);
+        int getTripId = inputView.inputData();
+
+        Trip getTripInfo = tripService.findTripById(getTripId);
+        outputView.viewerGetTripInfos(getTripInfo);
+    }
+
 }

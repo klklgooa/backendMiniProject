@@ -8,19 +8,28 @@ import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
 import org.example.view.outputView.OutputViewMessage;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.example.globals.exceptions.InvalidItineraryTimeException;
 
 public class ItineraryController {
     private final TripService tripService = new TripService();
     private final ItineraryService itineraryService = new ItineraryService();
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final OutputView outputView;
+    private final InputView inputView;
 
     /** 특정 Trip의 itineraries를 조회/출력하고, 실제 리스트를 반환 */
+    public List<Itinerary> itineraries = new ArrayList<>();
+
+    public ItineraryController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
     public List<Itinerary> getIterineriesFromTrips(int targetTripId) {
-        List<Trip> allTrips = tripService.getTrip();
+        List<Trip> allTrips = tripService.initialMappingJsonFile();
         Optional<Trip> foundTrip = allTrips.stream()
                 .filter(trip -> trip.getTrip_id() == targetTripId)
                 .findFirst();
@@ -37,38 +46,62 @@ public class ItineraryController {
 
     /** 명세: 일정 여러 개 입력(Y/N) */
     public void inputItinearyData() {
-        System.out.println("일정을 추가할 여행 ID를 입력하세요:");
-        int tripId = inputView.inputData();
+        getAllTripViewToItineraryInput();
+        int selectTripInputId = inputView.inputData();
 
-        while (true) {
-            System.out.println("출발지:");
-            String departurePlace = inputView.inputDataStr();
-
-            System.out.println("도착지:");
-            String destination = inputView.inputDataStr();
-
-            System.out.println("출발 시간(예: 2023-07-15T08:00:00):");
-            String departureTime = inputView.inputDataStr();
-
-            System.out.println("도착 시간(예: 2023-07-15T10:00:00):");
-            String arrivalTime = inputView.inputDataStr();
-
-            System.out.println("체크인(예: 2023-07-15T12:00:00):");
-            String checkIn = inputView.inputDataStr();
-
-            System.out.println("체크아웃(예: 2023-07-30T10:00:00):");
-            String checkOut = inputView.inputDataStr();
-
+        boolean continueInput = true;
+        while (continueInput) {
             try {
-                itineraryService.addToTrip(tripId, departurePlace, destination, departureTime, arrivalTime, checkIn, checkOut);
-                System.out.println("일정이 저장되었습니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("저장 실패: " + e.getMessage());
-            }
+                collectAndSaveItinerary(selectTripInputId);
+                outputView.sucessSaveItineraryInfoMessage();
 
-            System.out.println("일정을 계속 추가하시겠습니까? (Y/N)");
-            String yn = inputView.inputDataStr();
-            if (!"Y".equalsIgnoreCase(yn)) break;
+                int chooseRetry = inputView.inputData();
+                if (chooseRetry == 2) {
+                    continueInput = false;
+                }
+                
+            } catch (InvalidItineraryTimeException e) {
+                outputView.showError(e.getMessage());
+                continueInput = askForRetry();
+            } catch (Exception e) {
+                outputView.showError(e.getMessage());
+                continueInput = askForRetry();
+            }
         }
+    }
+
+    private void collectAndSaveItinerary(int tripId) {
+        outputView.startItineraryInputStartMessage();
+
+        outputView.tripRequestItineraryOrigin();
+        String tripOriginName = inputView.inputDataStr();
+
+        outputView.tripRequestItineraryDestination();
+        String tripDestination = inputView.inputDataStr();
+
+        outputView.tripRequestItineraryOriginTime();
+        String tripOriginTime = inputView.inputDataStrTime();
+
+        outputView.tripRequestItineraryDestinationTime();
+        String tripDestinationTime = inputView.inputDataStrTime();
+
+        outputView.tripRequestItineraryCheckInTime();
+        String tripCheckInTime = inputView.inputDataStrTime();
+
+        outputView.tripRequestItineraryCheckOutTime();
+        String tripCheckOutTime = inputView.inputDataStrTime();
+        
+        itineraryService.saveItineraryInfo(tripId, tripOriginName, tripDestination, tripOriginTime, tripDestinationTime, tripCheckInTime, tripCheckOutTime);
+    }
+
+    private boolean askForRetry() {
+        outputView.requestRetryMessage();
+        int retryChoice = inputView.inputData();
+        return retryChoice == 1;
+    }
+
+    private void getAllTripViewToItineraryInput() {
+        List<Trip> getTrips = tripService.findAllTrips();
+        outputView.viewerGetTrips(getTrips);
     }
 }

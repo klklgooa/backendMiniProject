@@ -10,17 +10,34 @@ import java.util.List;
 public class TripService {
     private final TripRepository tripRepository = new TripRepository();
 
+    private static List<Trip> trips;
+
     public boolean createTrip(String trip_name, String start_date, String end_date) {
-        Trip trip = new Trip(trip_name, start_date, end_date);
-        tripRepository.addTrip(trip);
-        return true;
+        try {
+            Trip trip = new Trip(trip_name, start_date, end_date);
+            tripRepository.addTrip(trip);
+            return true;
+        } catch (Exception e) {
+//            throw new RuntimeException(e);
+            return false;
+        }
     }
 
     public Trip findTripById(int trip_id) {
         return tripRepository.findTripById(trip_id);
     }
 
-    public List<Trip> getTrip() {
+    public List<Trip> findAllTrips() {
+        try {
+            trips = tripRepository.findAllTrips();
+            return trips;
+        } catch (Exception e) {
+
+            return null;
+        }
+    }
+
+    public List<Trip> initialMappingJsonFile() {
         try {
             return tripRepository.loadAllTrips();
         } catch (IOException e) {
@@ -28,4 +45,10 @@ public class TripService {
             return Collections.emptyList();
         }
     }
+
+    // input 할것 저장해야해요~!
+    public void inputTripData(String name, String startDate, String stopDate) {
+
+    }
+
 }

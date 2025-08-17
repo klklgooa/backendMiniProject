@@ -1,8 +1,9 @@
 package org.example.view.inputView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import org.example.globals.exceptions.InputException;
+import org.example.globals.utils.InputValidator;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -30,4 +31,25 @@ public class InputView {
         }
     }
 
+    public String inputDataStrDate() {
+        while(true){
+            try {
+                String input = scanner.next();
+                return InputValidator.validateAndFormatDate(input);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public String inputDataStrTime() {
+        while(true){
+            try {
+                String input = scanner.next();
+                return InputValidator.validateAndFormatDateTime(input);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

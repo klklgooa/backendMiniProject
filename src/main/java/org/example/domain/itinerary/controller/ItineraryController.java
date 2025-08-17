@@ -6,46 +6,45 @@ import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.service.TripService;
 import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
+import org.example.view.outputView.OutputViewMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.example.globals.exceptions.InvalidItineraryTimeException;
 
 public class ItineraryController {
-    public TripService tripService = new TripService();
-    public ItineraryService itineraryService = new ItineraryService();
-    public List<Itinerary> itineraries = new ArrayList<>();
-
+    private final TripService tripService = new TripService();
+    private final ItineraryService itineraryService = new ItineraryService();
     private final OutputView outputView;
     private final InputView inputView;
+
+    /** 특정 Trip의 itineraries를 조회/출력하고, 실제 리스트를 반환 */
+    public List<Itinerary> itineraries = new ArrayList<>();
 
     public ItineraryController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
     public List<Itinerary> getIterineriesFromTrips(int targetTripId) {
         List<Trip> allTrips = tripService.initialMappingJsonFile();
         Optional<Trip> foundTrip = allTrips.stream()
                 .filter(trip -> trip.getTrip_id() == targetTripId)
                 .findFirst();
 
-        foundTrip.ifPresent(trip -> {
-            List<Itinerary> itineraries = trip.getItineraries();
+        if (foundTrip.isEmpty()) {
+            outputView.printError("해당 ID의 여행이 없습니다: " + targetTripId);
+            return Collections.emptyList();
+        }
 
-            System.out.println("--- Trip ID: " + trip.getTrip_id() + "의 itineraries ---");
-            itineraries.forEach(itinerary -> {
-                System.out.println("  - Itinerary ID: " + itinerary.getItinerary_id());
-                System.out.println("    Departure: " + itinerary.getDeparture_place() + " at " + itinerary.getDeparture_time());
-                System.out.println("    Destination: " + itinerary.getDestination() + " at " + itinerary.getArrival_time());
-                System.out.println("    Check-in: " + itinerary.getCheck_in());
-                System.out.println("    Check-out: " + itinerary.getCheck_out());
-                System.out.println("---------------------------------------------");
-            });
-        });
-        return itineraries;
+        List<Itinerary> list = itineraryService.listByTripId(targetTripId);
+        outputView.printItineraryList(list, targetTripId);
+        return list;
     }
 
+    /** 명세: 일정 여러 개 입력(Y/N) */
     public void inputItinearyData() {
         getAllTripViewToItineraryInput();
         int selectTripInputId = inputView.inputData();

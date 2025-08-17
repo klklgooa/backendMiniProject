@@ -58,9 +58,6 @@ public class OrchestrationController {
                 tripController.getTotalViewTripInfo();
                 break;
         }
-
-    private void task2_test() {
-        outputView.testPrintMessage();
     }
 
     private void process(Runnable action) {

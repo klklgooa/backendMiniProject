@@ -8,9 +8,9 @@ import org.example.view.outputView.OutputView;
 import java.util.List;
 
 public class TripController {
-    TripService tripService = new TripService();
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    private final TripService tripService = new TripService();
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
 
     public TripController() {}
 
@@ -59,12 +59,7 @@ public class TripController {
 
     public List<Trip> getTripList() {
         List<Trip> tripList = tripService.getTrip();
-        tripList.stream().forEach(trip -> {
-            System.out.println("  - 여행 ID: " + trip.getTrip_id());
-            System.out.println("  - 여행 이름: " + trip.getTrip_name());
-            System.out.println("  - 여행 시작 날짜: " + trip.getStart_date());
-            System.out.println("  - 여행 종료 날짜: " + trip.getEnd_date());
-        });
+        outputView.printTripList(tripList);
         return tripList;
     }
-}}
+}

@@ -28,7 +28,8 @@ public enum OutputViewMessage {
     ITINERARY_INPUT_SUCCESS_MESSAGE("Itinerary가 저장되었습니다."),
     ITINERARY_INPUT_RETRY_MESSAGE("계속 입력하시겠습니까? (1: 계속, 2: 종료)"),
     NO_TRIP_ID_OUTPUT_MESSAGE("일치하는 여행 ID가 없습니다. 다시 입력해 주세요."),
-    ITINERARY_OUTPUT_COLUMN("여정 ID || 출발지 || 도착지 || 출발_시간 || 도착_시간 || 체크인 || 체크아웃");
+    ITINERARY_OUTPUT_COLUMN("여정 ID || 출발지 || 도착지 || 출발_시간 || 도착_시간 || 체크인 || 체크아웃"),
+    NO_ITINERARY_MESSAGE("해당하는 여정이 존재하지 않습니다.");
 
     private final String message;
 

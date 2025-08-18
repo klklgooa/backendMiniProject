@@ -59,7 +59,7 @@ public class InputView {
             try {
                 String input = readUserInput();
                 return InputValidator.validateAndFormatDate(input);
-            } catch (IllegalArgumentException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -27,17 +27,11 @@ public class OrchestrationController {
     private void initialMappingJsonFile() {
         tripController.initialMappingJsonFile();
     }
-
-    private void task2_test() {
-        outputView.testPrintMessage();
-        List<Itinerary> itineraryListOfTripId = itineraryController.getIterineriesFromTrips(1);
-        List<Trip> tripList = tripController.getTripList();
-    }
   
     private void welcomStartTrip() {
         while(true) {
             outputView.welcomStartTravelMessage();
-            int initInputData = inputView.inputData();
+            int initInputData = inputView.inputStart();
             goToInitialSelecterInputData(initInputData);
 
             if(initInputData==4) {

@@ -90,5 +90,4 @@ public class TripRepository {
     public List<Trip> findAllTrips() {
         return trips;
     }
-
 }

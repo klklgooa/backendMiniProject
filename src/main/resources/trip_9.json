@@ -3,13 +3,5 @@
   "trip_name" : "hello",
   "start_date" : "2025-06-24",
   "end_date" : "2024-08-04",
-  "itineraries" : [ {
-    "itinerary_id" : 1,
-    "departure_place" : "fsdf",
-    "destination" : "csdac",
-    "departure_time" : "2025-05-24T02:20:00",
-    "arrival_time" : "2025-05-24T02:20:00",
-    "check_in" : "2025-05-24T02:20:00",
-    "check_out" : "2025-05-24T02:20:00"
-  } ]
+  "itineraries" : [ ]
 }

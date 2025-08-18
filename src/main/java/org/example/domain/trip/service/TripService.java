@@ -26,7 +26,6 @@ public class TripService {
             List<Trip> trips = tripRepository.findAllTrips();
             return trips;
         } catch (Exception e) {
-
             return null;
         }
     }

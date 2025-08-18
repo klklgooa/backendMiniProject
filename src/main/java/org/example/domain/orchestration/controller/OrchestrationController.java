@@ -31,7 +31,7 @@ public class OrchestrationController {
     private void welcomStartTrip() {
         while(true) {
             outputView.welcomStartTravelMessage();
-            int initInputData = inputView.inputStart();
+            int initInputData = inputView.inputDataInRange(1, 4);
             goToInitialSelecterInputData(initInputData);
 
             if(initInputData==4) {

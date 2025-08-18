@@ -56,5 +56,3 @@ public class Trip {
         return itineraries;
     }
 }
-
-

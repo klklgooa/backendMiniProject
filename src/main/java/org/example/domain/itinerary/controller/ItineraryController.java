@@ -55,7 +55,7 @@ public class ItineraryController {
                 collectAndSaveItinerary(selectTripInputId);
                 outputView.sucessSaveItineraryInfoMessage();
 
-                int chooseRetry = inputView.inputData();
+                int chooseRetry = inputView.inputDataInRange(1, 2);
                 if (chooseRetry == 2) {
                     continueInput = false;
                 }

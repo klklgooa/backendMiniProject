@@ -30,7 +30,7 @@ public class TripController {
     public void inputTripsData() {
         while(true) {
             outputView.startTripRecordMessage();
-            int isInputTripRecord = inputView.inputData();
+            int isInputTripRecord = inputView.inputDataInRange(1,2);
             if(isInputTripRecord==1) {
                 inputTripRecord();
             }

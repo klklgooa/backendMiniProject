@@ -15,7 +15,7 @@ import java.util.List;
 public class TripRepository {
     private static final String FILE_PATH = "src/main/resources";
     private final ObjectMapper objectMapper;
-    List<Trip> trips = new ArrayList<>();
+    private static final List<Trip> trips = new ArrayList<>();
 
     // objcectMapper: 자바 객체 <-> json or json <-> 자바 객체로 매핑해주는 역할
     // JavaTimeModule(): java.time 패키지의 날짜·시간 타입을 변환해주는 역할
@@ -51,10 +51,25 @@ public class TripRepository {
         }
     }
 
+    public boolean hasTripId(int trip_id) {
+        return trips.stream()
+                .anyMatch(trip -> trip_id == trip.getTrip_id());
+    }
+
+
     public void saveTrip(Trip trip) {
         try {
             File file = new File(FILE_PATH, "trip_" + trip.getTrip_id() + ".json");
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, trip);
+
+            for (int i = 0; i < trips.size(); i++) {
+                if (trips.get(i).getTrip_id() == trip.getTrip_id()) {
+                    trips.set(i, trip);
+                    break;
+                }
+            }
+            trips.add(trip);
+
         } catch (IOException e) {
             throw new FileLoadException(ErrorMessage.FILE_NOT_LOADED_READ_ERROR.getMessage(), e);
         }
@@ -69,11 +84,6 @@ public class TripRepository {
 
     public List<Trip> findAllTrips() {
         return trips;
-    }
-
-    //해당 아이디에 itinerary 저장하기
-    public void saveItineraryInfo(int selectTripInputId, Itinerary itinerary) {
-
     }
 
 }

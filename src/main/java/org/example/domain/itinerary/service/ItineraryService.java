@@ -31,4 +31,7 @@ public class ItineraryService {
 
     }
 
+    public boolean hasTripId(int selectTripInputId) {
+        return tripRepository.hasTripId(selectTripInputId);
+    }
 }

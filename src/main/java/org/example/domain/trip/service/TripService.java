@@ -25,7 +25,7 @@ public class TripService {
 
     public List<Trip> findAllTrips() {
         try {
-            trips = tripRepository.findAllTrips();
+            List<Trip> trips = tripRepository.findAllTrips();
             return trips;
         } catch (Exception e) {
 
@@ -40,11 +40,6 @@ public class TripService {
             System.err.println("JSON 파일을 읽는 중 오류가 발생했습니다: " + e.getMessage());
             return Collections.emptyList();
         }
-    }
-
-    // input 할것 저장해야해요~!
-    public void inputTripData(String name, String startDate, String stopDate) {
-
     }
 
 }

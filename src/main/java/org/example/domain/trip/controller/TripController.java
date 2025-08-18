@@ -1,6 +1,8 @@
 package org.example.domain.trip.controller;
 
+import org.example.domain.itinerary.repository.ItineraryRepository;
 import org.example.domain.trip.entity.Trip;
+import org.example.domain.trip.repository.TripRepository;
 import org.example.domain.trip.service.TripService;
 import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
@@ -9,6 +11,7 @@ import java.util.List;
 
 public class TripController {
     private final TripService tripService = new TripService();;
+    private final TripRepository tripRepository = new TripRepository();
 
     private final OutputView outputView;
     private final InputView inputView;
@@ -67,8 +70,12 @@ public class TripController {
         outputView.viewerGetTrips(getTrips);
         int getTripId = inputView.inputData();
 
-        Trip getTripInfo = tripService.findTripById(getTripId);
-        outputView.viewerGetTripInfos(getTripInfo);
-    }
+        while(!tripRepository.hasTripId(getTripId)) {
+            outputView.noTripIdOutput();
+            getTripId = inputView.inputData();
+        }
 
+        Trip TripInfo = tripService.findTripById(getTripId);
+        outputView.printItineraryList(TripInfo);
+    }
 }

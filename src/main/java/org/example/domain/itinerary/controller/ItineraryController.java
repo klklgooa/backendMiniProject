@@ -6,7 +6,6 @@ import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.service.TripService;
 import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
-import org.example.view.outputView.OutputViewMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,8 +45,8 @@ public class ItineraryController {
 
     /** 명세: 일정 여러 개 입력(Y/N) */
     public void inputItinearyData() {
-        //getAllTripViewToItineraryInput();
-        int selectTripInputId = inputView.inputData();
+
+        int selectTripInputId = goInputTripId();
 
         boolean continueInput = true;
         while (continueInput) {
@@ -68,6 +67,21 @@ public class ItineraryController {
                 continueInput = askForRetry();
             }
         }
+    }
+
+    private int goInputTripId() {
+        boolean isHasTrip;
+        int selectTripInputId;
+        do {
+            getAllTripViewToItineraryInput();
+            selectTripInputId = inputView.inputData();
+            isHasTrip = itineraryService.hasTripId(selectTripInputId);
+            if(!isHasTrip) {
+                outputView.noTripIdOutput();
+            }
+        } while(!isHasTrip);
+
+        return selectTripInputId;
     }
 
     private void collectAndSaveItinerary(int tripId) {

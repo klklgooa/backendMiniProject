@@ -3,5 +3,13 @@
   "trip_name" : "여은동33",
   "start_date" : "2025-03-16",
   "end_date" : "2025-03-16",
-  "itineraries" : [ ]
+  "itineraries" : [ {
+    "itinerary_id" : 1,
+    "departure_place" : "ㅇㅇ",
+    "destination" : "ㅇㅇ",
+    "departure_time" : "2025-03-16T03:00:00",
+    "arrival_time" : "2025-03-16T03:00:00",
+    "check_in" : "2025-03-16T03:00:00",
+    "check_out" : "2025-03-16T03:00:00"
+  } ]
 }

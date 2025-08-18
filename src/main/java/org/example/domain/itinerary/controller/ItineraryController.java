@@ -110,7 +110,7 @@ public class ItineraryController {
 
     private boolean askForRetry() {
         outputView.requestRetryMessage();
-        int retryChoice = inputView.inputData();
+        int retryChoice = inputView.inputDataInRange(1, 2);
         return retryChoice == 1;
     }
 

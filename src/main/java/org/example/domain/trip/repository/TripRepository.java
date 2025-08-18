@@ -62,13 +62,18 @@ public class TripRepository {
             File file = new File(FILE_PATH, "trip_" + trip.getTrip_id() + ".json");
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, trip);
 
+            boolean exists = false;
             for (int i = 0; i < trips.size(); i++) {
                 if (trips.get(i).getTrip_id() == trip.getTrip_id()) {
                     trips.set(i, trip);
+                    exists = true;
                     break;
                 }
             }
-            trips.add(trip);
+
+            if (!exists) {
+                trips.add(trip);
+            }
 
         } catch (IOException e) {
             throw new FileLoadException(ErrorMessage.FILE_NOT_LOADED_READ_ERROR.getMessage(), e);

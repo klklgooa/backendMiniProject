@@ -11,8 +11,6 @@ import java.util.List;
 public class TripService {
     private final TripRepository tripRepository = new TripRepository();
 
-    private static List<Trip> trips;
-
     public void createTrip(String trip_name, String start_date, String end_date) {
         TimeValidator.validateTripDates(start_date, end_date);
         Trip trip = new Trip(trip_name, start_date, end_date);

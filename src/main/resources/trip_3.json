@@ -11,5 +11,13 @@
     "arrival_time" : "2025-05-24T03:24:00",
     "check_in" : "2025-05-24T03:24:00",
     "check_out" : "2025-05-24T03:24:00"
+  }, {
+    "itinerary_id" : 2,
+    "departure_place" : "우리집",
+    "destination" : "프디아",
+    "departure_time" : "2025-05-24T07:00:00",
+    "arrival_time" : "2025-05-24T08:00:00",
+    "check_in" : "2025-05-24T09:00:00",
+    "check_out" : "2025-05-24T10:00:00"
   } ]
 }

@@ -73,7 +73,7 @@ public class TripController {
 
         Trip TripInfo = tripService.findTripById(getTripId);
         if(!itineraryService.hasItineraries(TripInfo)) {
-            outputView.printNoIterierary();//false면
+            outputView.printNoIterierary();
         }else {
             outputView.printItineraryList(TripInfo);
         }

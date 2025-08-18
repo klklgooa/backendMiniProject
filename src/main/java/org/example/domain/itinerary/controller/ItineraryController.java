@@ -26,25 +26,26 @@ public class ItineraryController {
         this.inputView = inputView;
         this.outputView = outputView;
     }
-
-    public List<Itinerary> getIterineriesFromTrips(int targetTripId) {
-        List<Trip> allTrips = tripService.initialMappingJsonFile();
-        Optional<Trip> foundTrip = allTrips.stream()
-                .filter(trip -> trip.getTrip_id() == targetTripId)
-                .findFirst();
-
-        if (foundTrip.isEmpty()) {
-            outputView.printError("해당 ID의 여행이 없습니다: " + targetTripId);
-            return Collections.emptyList();
-        }
-
-        List<Itinerary> list = itineraryService.listByTripId(targetTripId);
-        outputView.printItineraryList(list, targetTripId);
-        return list;
-    }
+//
+//    public List<Itinerary> getIterineriesFromTrips(int targetTripId) {
+//        List<Trip> allTrips = tripService.initialMappingJsonFile();
+//        Optional<Trip> foundTrip = allTrips.stream()
+//                .filter(trip -> trip.getTrip_id() == targetTripId)
+//                .findFirst();
+//
+//        if (foundTrip.isEmpty()) {
+//            outputView.printError("해당 ID의 여행이 없습니다: " + targetTripId);
+//            return Collections.emptyList();
+//        }
+//
+//        List<Itinerary> list = itineraryService.listByTripId(targetTripId);
+//        outputView.printItineraryList(list, targetTripId);
+//        return list;
+//    }
 
     /** 명세: 일정 여러 개 입력(Y/N) */
     public void inputItinearyData() {
+
         int selectTripInputId = goInputTripId();
 
         boolean continueInput = true;
@@ -113,8 +114,8 @@ public class ItineraryController {
         return retryChoice == 1;
     }
 
-    private void getAllTripViewToItineraryInput() {
-        List<Trip> getTrips = tripService.findAllTrips();
-        outputView.viewerGetTrips(getTrips);
-    }
+//    private void getAllTripViewToItineraryInput() {
+//        List<Trip> getTrips = tripService.findAllTrips();
+//        outputView.viewerGetTrips(getTrips);
+//    }
 }

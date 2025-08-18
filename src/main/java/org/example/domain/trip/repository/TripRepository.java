@@ -5,6 +5,7 @@ import org.example.domain.itinerary.entity.Itinerary;
 import org.example.domain.trip.entity.Trip;
 import org.example.globals.exceptions.ErrorMessage;
 import org.example.globals.exceptions.FileLoadException;
+import org.example.globals.utils.FileNo;
 
 import java.io.File;
 import java.io.IOException;
@@ -82,7 +83,8 @@ public class TripRepository {
     }
 
     public void addTrip(Trip trip) {
-        int newId = trips.size() + 1;
+        FileNo FileNo = new FileNo();
+        int newId = FileNo.getNextFileNo();
         trip.setTrip_id(newId);
         saveTrip(trip);
     }

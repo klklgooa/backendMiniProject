@@ -9,6 +9,12 @@ import java.time.format.DateTimeParseException;
 
 public class InputValidator {
 
+    public static void validateInitialInput(int input) {
+        if (input < 1 || input > 4) {
+            throw new InputException("1, 2, 3, 4 중 하나를 입력해야 합니다.");
+        }
+    }
+
     public static String validateAndFormatDate(String input) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy/M/d");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -28,6 +34,7 @@ public class InputValidator {
             return dateTime.format(outputFormatter);
         } catch (DateTimeParseException e) {
             throw new InputException(ErrorMessage.INVALID_TIME_FORMAT.getMessage());
+
         }
     }
 }

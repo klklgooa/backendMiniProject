@@ -16,10 +16,6 @@ public class OutputView {
         System.out.println("============ " + title + " ============");
     }
 
-    public void printSection(String title) {
-        System.out.println("----- " + title + " -----");
-    }
-
     public void printSuccess(String msg) {
         System.out.println("[성공] " + msg);
     }
@@ -71,10 +67,10 @@ public class OutputView {
     // 여정, 여행에서 쓰이는 헬퍼들
     public void printTrip(Trip t) {
         if (t == null) { printError("여행 정보가 없습니다."); return; }
-        System.out.println("  - 여행 ID: " + t.getTrip_id());
-        System.out.println("  - 여행 이름: " + t.getTrip_name());
-        System.out.println("  - 여행 시작 날짜: " + t.getStart_date());
-        System.out.println("  - 여행 종료 날짜: " + t.getEnd_date());
+        System.out.print(t.getTrip_id() + " || " );
+        System.out.print(t.getTrip_name() + " || " );
+        System.out.print(t.getStart_date() + " || " );
+        System.out.println(t.getEnd_date());
     }
 
     public void printTripList(List<Trip> trips) {
@@ -82,26 +78,23 @@ public class OutputView {
             printMessage("등록된 여행이 없습니다.");
             return;
         }
-        printSection("여행 목록");
+        printMessage(OutputViewMessage.TRIP_OUTPUT_COLUMN.getMessage());
         trips.forEach(this::printTrip);
     }
 
     public void printItinerary(Itinerary it) {
-        System.out.println("  - Itinerary ID: " + it.getItinerary_id());
-        System.out.println("    Departure: " + it.getDeparture_place() + " at " + it.getDeparture_time());
-        System.out.println("    Destination: " + it.getDestination() + " at " + it.getArrival_time());
-        System.out.println("    Check-in: " + it.getCheck_in());
-        System.out.println("    Check-out: " + it.getCheck_out());
-        System.out.println("---------------------------------------------");
+        System.out.print(it.getItinerary_id() + " || ");
+        System.out.print(it.getDeparture_place() + " || ");
+        System.out.print(it.getDestination() + " || ");
+        System.out.print(it.getDeparture_time() + " || ");
+        System.out.print(it.getArrival_time() + " || ");
+        System.out.print(it.getCheck_in()  + " || ");
+        System.out.println(it.getCheck_out()  + " || ");
     }
 
-    public void printItineraryList(List<Itinerary> list, int tripId) {
-        if (list == null || list.isEmpty()) {
-            printMessage("해당 여행(" + tripId + ")의 일정이 없습니다.");
-            return;
-        }
-        printSection("Trip ID: " + tripId + "의 itineraries");
-        list.forEach(this::printItinerary);
+    public void printItineraryList(Trip trip) {
+        printMessage(OutputViewMessage.ITINERARY_OUTPUT_COLUMN.getMessage());
+        trip.getItineraries().forEach(this::printItinerary);
     }
 
     public void startItineraryInputStartMessage() {
@@ -149,13 +142,7 @@ public class OutputView {
     }
 
     public void viewerGetTrips(List<Trip> getTrips) {
-
-        // 여행 출력 해야함~
-
+        printTripList(getTrips);
         printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_TO_ITINERARY_MESSAGE.getMessage());
-    }
-
-    public void viewerGetTripInfos(Trip getTripInfo) {
-
     }
 }

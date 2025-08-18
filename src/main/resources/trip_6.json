@@ -1,0 +1,15 @@
+{
+  "trip_id" : 6,
+  "trip_name" : "hi",
+  "start_date" : "2025-01-01",
+  "end_date" : "2025-01-02",
+  "itineraries" : [ {
+    "itinerary_id" : 1,
+    "departure_place" : "우리지비",
+    "destination" : "프디아",
+    "departure_time" : "2025-08-18T07:00:00",
+    "arrival_time" : "2025-08-18T08:00:00",
+    "check_in" : "2025-08-18T09:00:00",
+    "check_out" : "2025-08-18T10:00:00"
+  } ]
+}

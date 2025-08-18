@@ -47,7 +47,13 @@ public class TripController {
         outputView.tripInputStopDateMessage();
         String stopDate = inputView.inputDataStrDate();
 
-        tripService.createTrip(name, startDate, stopDate);
+        try {
+            tripService.createTrip(name, startDate, stopDate);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     public List<Trip> getTripList() {

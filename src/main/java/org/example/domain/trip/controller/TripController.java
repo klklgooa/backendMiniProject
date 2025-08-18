@@ -54,6 +54,7 @@ public class TripController {
 
         try {
             tripService.createTrip(name, startDate, stopDate);
+            outputView.sucessSaveTripInfoMessage();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

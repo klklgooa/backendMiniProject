@@ -64,6 +64,7 @@ public class OutputView {
         printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_STOP_DATE.getMessage());
     }
 
+
     // 여정, 여행에서 쓰이는 헬퍼들
     public void printTrip(Trip t) {
         if (t == null) { printError("여행 정보가 없습니다."); return; }
@@ -126,6 +127,10 @@ public class OutputView {
 
     public void sucessSaveItineraryInfoMessage() {
         printMessage(OutputViewMessage.ITINERARY_INPUT_SUCCESS_MESSAGE.getMessage());
+        printMessage(OutputViewMessage.ITINERARY_INPUT_RETRY_MESSAGE.getMessage());
+    }
+    public void sucessSaveTripInfoMessage() {
+        printMessage(OutputViewMessage.TRIP_INPUT_SUCCESS_MESSAGE.getMessage());
         printMessage(OutputViewMessage.ITINERARY_INPUT_RETRY_MESSAGE.getMessage());
     }
 

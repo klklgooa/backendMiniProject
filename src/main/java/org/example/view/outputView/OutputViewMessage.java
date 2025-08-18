@@ -25,7 +25,8 @@ public enum OutputViewMessage {
     TRIP_INPUT_REQUEST_ITINERARY_CHECK_IN_MESSAGE("체크인:"),
     TRIP_INPUT_REQUEST_ITINERARY_CHECK_OUT_MESSAGE("체크아웃:"),
     ITINERARY_INPUT_SUCCESS_MESSAGE("Itinerary가 저장되었습니다."),
-    ITINERARY_INPUT_RETRY_MESSAGE("계속 입력하시겠습니까? (1: 계속, 2: 종료)");
+    ITINERARY_INPUT_RETRY_MESSAGE("계속 입력하시겠습니까? (1: 계속, 2: 종료)"),
+    NO_TRIP_ID_OUTPUT_MESSAGE("해당하는 Trip이 존재하지 않습니다.");
 
     private final String message;
 

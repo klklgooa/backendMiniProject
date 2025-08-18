@@ -144,6 +144,9 @@ public class OutputView {
         printMessage(OutputViewMessage.ITINERARY_INPUT_RETRY_MESSAGE.getMessage());
     }
 
+    public void noTripIdOutput() {
+        printMessage(OutputViewMessage.NO_TRIP_ID_OUTPUT_MESSAGE.getMessage());
+    }
 
     public void viewerGetTrips(List<Trip> getTrips) {
 

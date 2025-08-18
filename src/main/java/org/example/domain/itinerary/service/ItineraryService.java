@@ -28,9 +28,7 @@ public class ItineraryService {
 
         Itinerary itinerary = new Itinerary(checkItineraryInfoCount+1, tripOriginName, tripDestination, tripOriginTime, tripDestinationTime, tripCheckInTime, tripCheckOutTime);
         itineraryRepository.addToTrip(selectTripInputId, itinerary);
-
     }
-
     public boolean hasTripId(int selectTripInputId) {
         return tripRepository.hasTripId(selectTripInputId);
     }

@@ -54,7 +54,7 @@ public class ItineraryController {
                 collectAndSaveItinerary(selectTripInputId);
                 outputView.sucessSaveItineraryInfoMessage();
 
-                int chooseRetry = inputView.inputData();
+                int chooseRetry = inputView.inputDataInRange(1, 2);
                 if (chooseRetry == 2) {
                     continueInput = false;
                 }
@@ -110,7 +110,7 @@ public class ItineraryController {
 
     private boolean askForRetry() {
         outputView.requestRetryMessage();
-        int retryChoice = inputView.inputData();
+        int retryChoice = inputView.inputDataInRange(1, 2);
         return retryChoice == 1;
     }
 

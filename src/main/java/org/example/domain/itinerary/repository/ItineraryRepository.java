@@ -36,6 +36,7 @@ public class ItineraryRepository {
         newItinerary.setItinerary_id(nextId);
 
         trip.getItineraries().add(newItinerary);
+
         tripRepository.saveTrip(trip);
     }
 }

@@ -22,6 +22,18 @@ public class InputView {
         }
     }
 
+    public int inputDataInRange(int min, int max) {
+        while (true) {
+            int value = inputData();
+
+            if (value < min || value > max) {
+                System.out.print("숫자 범위를 벗어났습니다. (" + min + " ~ " + max + "): ");
+            } else {
+                return value;
+            }
+        }
+    }
+
     /** 공백 포함 문자열 입력 */
     public String inputDataStr() {
         while (true) {

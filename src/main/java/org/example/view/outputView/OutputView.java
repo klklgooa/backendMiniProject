@@ -145,4 +145,8 @@ public class OutputView {
         printTripList(getTrips);
         printMessage(OutputViewMessage.TRIP_INPUT_REQUEST_TO_ITINERARY_MESSAGE.getMessage());
     }
+
+    public void printNoIterierary() {
+        printMessage(OutputViewMessage.NO_ITINERARY_MESSAGE.getMessage());
+    }
 }

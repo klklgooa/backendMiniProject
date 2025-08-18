@@ -59,7 +59,6 @@ public class TripRepository {
 
     public void saveTrip(Trip trip) {
         try {
-            System.out.println("hi");
             File file = new File(FILE_PATH, "trip_" + trip.getTrip_id() + ".json");
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, trip);
 
@@ -69,12 +68,6 @@ public class TripRepository {
                     break;
                 }
             }
-            System.out.println("hi2");
-            for(Trip trip1 : trips) {
-                System.out.println(trip1.getTrip_id());
-            }
-            System.out.println("hi3");
-
             trips.add(trip);
 
         } catch (IOException e) {

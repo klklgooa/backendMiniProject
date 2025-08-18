@@ -2,6 +2,7 @@ package org.example.domain.trip.service;
 
 import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.repository.TripRepository;
+import org.example.globals.utils.TimeValidator;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -10,15 +11,12 @@ import java.util.List;
 public class TripService {
     private final TripRepository tripRepository = new TripRepository();
 
-    public boolean createTrip(String trip_name, String start_date, String end_date) {
-        try {
-            Trip trip = new Trip(trip_name, start_date, end_date);
-            tripRepository.addTrip(trip);
-            return true;
-        } catch (Exception e) {
-//            throw new RuntimeException(e);
-            return false;
-        }
+    private static List<Trip> trips;
+
+    public void createTrip(String trip_name, String start_date, String end_date) {
+        TimeValidator.validateTripDates(start_date, end_date);
+        Trip trip = new Trip(trip_name, start_date, end_date);
+        tripRepository.addTrip(trip);
     }
 
     public Trip findTripById(int trip_id) {

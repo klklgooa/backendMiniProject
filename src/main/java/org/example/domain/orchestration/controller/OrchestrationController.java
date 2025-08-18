@@ -59,9 +59,8 @@ public class OrchestrationController {
         try {
             action.run();
         } catch (IllegalArgumentException e) {
-//            outputView.exception(e);
-            action.run();
-            throw e;
+            System.out.println(e.getMessage());
         }
     }
+
 }

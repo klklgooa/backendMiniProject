@@ -5,10 +5,9 @@ import org.example.domain.itinerary.entity.Itinerary;
 import org.example.domain.trip.controller.TripController;
 import org.example.domain.trip.entity.Trip;
 import org.example.domain.trip.service.TripService;
+import org.example.globals.exceptions.ExitException;
 import org.example.view.inputView.InputView;
 import org.example.view.outputView.OutputView;
-
-import java.util.List;
 
 public class OrchestrationController {
 
@@ -27,16 +26,23 @@ public class OrchestrationController {
     private void initialMappingJsonFile() {
         tripController.initialMappingJsonFile();
     }
-  
+
     private void welcomStartTrip() {
         while(true) {
-            outputView.welcomStartTravelMessage();
-            int initInputData = inputView.inputDataInRange(1, 4);
-            goToInitialSelecterInputData(initInputData);
+            try {
+                outputView.welcomStartTravelMessage();
+                int initInputData = inputView.inputDataInRange(1, 4);
 
-            if(initInputData==4) {
-                outputView.stopTravelMessage();
-                break;
+                // 4번(종료)이 아닌 경우에만 goTo... 메서드 호출
+                if (initInputData == 4) {
+                    outputView.stopTravelMessage();
+                    break;
+                }
+
+                goToInitialSelecterInputData(initInputData);
+
+            } catch (ExitException e) {
+                outputView.testPrintMessage();
             }
         }
     }

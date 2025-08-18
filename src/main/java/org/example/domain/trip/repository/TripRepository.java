@@ -69,9 +69,9 @@ public class TripRepository {
         return trips;
     }
 
-    //해당 아이디에 itinerary 저장하기
-    public void saveItineraryInfo(int selectTripInputId, Itinerary itinerary) {
-
-    }
+    // 해당 아이디에 itinerary 저장하기
+//    public void saveItineraryInfo(int selectTripInputId, Itinerary itinerary) {
+//
+//    }
 
 }

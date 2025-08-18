@@ -28,7 +28,5 @@ public class ItineraryService {
 
         Itinerary itinerary = new Itinerary(checkItineraryInfoCount+1, tripOriginName, tripDestination, tripOriginTime, tripDestinationTime, tripCheckInTime, tripCheckOutTime);
         itineraryRepository.addToTrip(selectTripInputId, itinerary);
-
     }
-
 }

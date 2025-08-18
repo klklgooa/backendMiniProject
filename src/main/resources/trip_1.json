@@ -1,0 +1,7 @@
+{
+  "trip_id" : 1,
+  "trip_name" : "집가기",
+  "start_date" : "2025-01-03",
+  "end_date" : "2025-01-04",
+  "itineraries" : [ ]
+}

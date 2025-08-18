@@ -114,8 +114,8 @@ public class ItineraryController {
         return retryChoice == 1;
     }
 
-//    private void getAllTripViewToItineraryInput() {
-//        List<Trip> getTrips = tripService.findAllTrips();
-//        outputView.viewerGetTrips(getTrips);
-//    }
+    private void getAllTripViewToItineraryInput() {
+        List<Trip> getTrips = tripService.findAllTrips();
+        outputView.viewerGetTrips(getTrips);
+    }
 }

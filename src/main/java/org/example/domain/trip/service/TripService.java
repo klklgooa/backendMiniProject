@@ -10,8 +10,6 @@ import java.util.List;
 public class TripService {
     private final TripRepository tripRepository = new TripRepository();
 
-    private static List<Trip> trips;
-
     public boolean createTrip(String trip_name, String start_date, String end_date) {
         try {
             Trip trip = new Trip(trip_name, start_date, end_date);
@@ -29,7 +27,7 @@ public class TripService {
 
     public List<Trip> findAllTrips() {
         try {
-            trips = tripRepository.findAllTrips();
+            List<Trip> trips = tripRepository.findAllTrips();
             return trips;
         } catch (Exception e) {
             return null;
@@ -43,11 +41,6 @@ public class TripService {
             System.err.println("JSON 파일을 읽는 중 오류가 발생했습니다: " + e.getMessage());
             return Collections.emptyList();
         }
-    }
-
-    // input 할것 저장해야해요~!
-    public void inputTripData(String name, String startDate, String stopDate) {
-
     }
 
 }

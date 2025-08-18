@@ -61,8 +61,7 @@ public class TripController {
         outputView.viewerGetTrips(getTrips);
         int getTripId = inputView.inputData();
 
-        Trip getTripInfo = tripService.findTripById(getTripId);
-        outputView.viewerGetTripInfos(getTripInfo);
+        Trip TripInfo = tripService.findTripById(getTripId);
+        outputView.printItineraryList(TripInfo);
     }
-
 }

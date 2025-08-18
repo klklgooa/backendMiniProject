@@ -3,10 +3,10 @@ package org.example.view.inputView;
 import org.example.globals.exceptions.InputException;
 import org.example.globals.utils.InputValidator;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
+    InputValidator inputValidator = new InputValidator();
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -62,6 +62,21 @@ public class InputView {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public int inputStart() {
+        String rawInput = scanner.nextLine();
+        int number = convertToInt(rawInput);
+        inputValidator.validateInitialInput(number);
+        return number;
+    }
+
+    private int convertToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new InputException("숫자를 입력해야 합니다.");
         }
     }
 }
